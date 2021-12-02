@@ -25,10 +25,8 @@ void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 	PlayerInputComponent->BindAxis(TEXT("Turn"), this, &ATank::Turn);
 }
 
-void ATank::Tick(float DeltaTime)
+void ATank::HandleTurretRotation()
 {
-	Super::Tick(DeltaTime);
-
 	if (PlayerController)
 	{
 		FHitResult HitResult;
@@ -36,6 +34,12 @@ void ATank::Tick(float DeltaTime)
 		DrawDebugSphere(GetWorld(), HitResult.ImpactPoint, 5.f, 12, FColor::Red, false);
 		RotateTurret(HitResult.ImpactPoint);
 	}
+}
+
+void ATank::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+	HandleTurretRotation();
 }
 
 void ATank::BeginPlay()
