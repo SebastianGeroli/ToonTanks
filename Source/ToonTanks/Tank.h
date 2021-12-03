@@ -17,28 +17,29 @@ public:
 	ATank();
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-	
 
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+	virtual void HandleDestruction() override;
+	APlayerController* GetTankPlayerController() const { return PlayerController; }
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 private:
 	UPROPERTY(VisibleAnywhere, Category="Components")
 	class USpringArmComponent* SpringArm;
-	
+
 	UPROPERTY(VisibleAnywhere, Category="Components")
 	class UCameraComponent* Camera;
-	
+
 	APlayerController* PlayerController;
-	
+
 	UPROPERTY(EditAnywhere, Category="Movement")
 	float Speed = 400.0f;
-	
+
 	UPROPERTY(EditAnywhere, Category="Movement")
 	float TurnRate = 45.0f;
-	
+
 	void Move(float Value);
 	void Turn(float Value);
 	void HandleTurretRotation();
