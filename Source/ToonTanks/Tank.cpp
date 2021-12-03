@@ -45,6 +45,7 @@ void ATank::Tick(float DeltaTime)
 
 void ATank::HandleDestruction()
 {
+	UE_LOG(LogTemp, Warning, TEXT("Handle Destruction Called") );
 	Super::HandleDestruction();
 	SetActorHiddenInGame(true);
 	SetActorTickEnabled(false);
