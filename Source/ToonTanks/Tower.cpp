@@ -32,10 +32,18 @@ void ATower::BeginPlay()
 
 void ATower::CheckFireCondition()
 {
-	if (IsInFireRange())
+	if (IsInFireRange() && TargetIsAlive())
 	{
 		Fire();
 	}
+}
+
+bool ATower::TargetIsAlive(){
+	if(Tank == nullptr)
+	{
+	return false;
+	}
+	return Tank->bAlive;
 }
 
 bool ATower::IsInFireRange()

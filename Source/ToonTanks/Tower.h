@@ -28,4 +28,5 @@ private:
 	float FireRate = 2.f;
 	void CheckFireCondition();
 	bool IsInFireRange();
+	bool TargetIsAlive();
 };
