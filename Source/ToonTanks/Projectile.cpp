@@ -43,6 +43,9 @@ void AProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimi
 		{
 			UGameplayStatics::SpawnEmitterAtLocation(this, HitParticles, GetActorLocation(), GetActorRotation());
 		}
+		if(HitSound)
+		{
+		}
 		Destroy();
 	}
 }
