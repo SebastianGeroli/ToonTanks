@@ -4,6 +4,8 @@
 #include "BasePawn.h"
 #include "Components/CapsuleComponent.h"
 #include "Projectile.h"
+#include "Particles/ParticleSystem.h"
+#include "Kismet/GameplayStatics.h"
 // Sets default values
 ABasePawn::ABasePawn()
 {
@@ -19,8 +21,13 @@ ABasePawn::ABasePawn()
 	ProjectileSpawnPoint->SetupAttachment(TurretMesh);
 }
 
-void ABasePawn::HandleDestruction(){
+void ABasePawn::HandleDestruction()
+{
 	//TODO: Visual / Sounds Effects
+	if (DeathParticle)
+	{
+		UGameplayStatics::SpawnEmitterAtLocation(this, DeathParticle, GetActorLocation(), GetActorRotation());
+	}
 }
 
 void ABasePawn::RotateTurret(FVector LookAtTarget)
